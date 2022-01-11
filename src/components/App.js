@@ -4,7 +4,7 @@ import logoAdalab from "../images/logo-adalab.png";
 
 function App() {
   return (
-    <div>
+    <div id= "root">
       <main className="cards__main--wrapper">
         <header className="header">
           <a href="./index.html">
