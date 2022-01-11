@@ -1,0 +1,101 @@
+<fieldset class="form__fill collapsed">
+  <legend class="form__title js-fill__title">
+    <i class="form__title--icon far fa-keyboard"></i>
+    <h2 class="form__title--text">Rellena</h2>
+    <i
+      style="cursor: pointer"
+      class="form__title--chevron icon-medium far fa-chevron-down"
+    ></i>
+  </legend>
+  <div class="form__fill--wrapper">
+    <label for="fullname" class="form__label"
+      >Nombre Completo<span class="required">*</span></label
+    >
+    <input
+      type="text"
+      id="name"
+      name="name"
+      placeholder="Ej: Mrs. Chanandler Bong"
+      pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}"
+      class="form__input js-name js-input"
+      spellcheck="false"
+      required
+    />
+    <label for="job" class="form__label"
+      >Puesto<span class="required">*</span></label
+    >
+    <input
+      type="text"
+      id="job"
+      name="job"
+      placeholder="Ej: Front-end turkey"
+      pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}"
+      class="form__input js-job js-input"
+      spellcheck="false"
+      required
+    />
+    <label for="profilepicture" class="form__label"
+      >Imagen de perfil<span class="required">*</span></label
+    >
+
+    <div class="form__photosection">
+      <label for="photo" class="form__photobutton js__profile-trigger"
+        >Añadir imagen</label
+      >
+      <input
+        class="form__photoinput js__profile-upload-btn js-photo hidden"
+        type="file"
+        name="photo"
+        id="photo"
+        required
+      />
+      <span class="form__photothumb js__profile-preview"></span>
+    </div>
+    <label for="email" class="form__label"
+      >Email<span class="required">*</span></label
+    >
+    <input
+      type="email"
+      id="email"
+      name="email"
+      placeholder="Ej: sally-hill@gmail.com"
+      class="form__input js-email js-input"
+      spellcheck="false"
+      required
+    />
+    <label for="phone" class="form__label">Teléfono</label>
+    <input
+      type="tel"
+      id="phone"
+      name="phone"
+      placeholder="Ej: 555-55-55-55"
+      class="form__input js-phone js-input"
+      spellcheck="false"
+    />
+    <label for="linkedin" class="form__label"
+      >Linkedin<span class="required">*</span></label
+    >
+    <input
+      type="text"
+      id="linkedin"
+      name="linkedin"
+      placeholder="Ej: linkedin.com/in/sally.hill"
+      class="form__input js-linkedin js-input"
+      spellcheck="false"
+      required
+    />
+    <label for="github" class="form__label"
+      >Github<span class="required">*</span></label
+    >
+    <input
+      type="text"
+      id="github"
+      name="github"
+      placeholder="Ej: @sally-hill"
+      class="form__input js-github js-input"
+      spellcheck="false"
+      required
+    />
+    
+  </div>
+</fieldset>

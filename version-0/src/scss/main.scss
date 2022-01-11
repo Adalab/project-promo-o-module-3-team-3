@@ -1,0 +1,19 @@
+//Core
+
+@import "core/reset";
+@import "core/variables";
+@import "core/mixins";
+
+//Pages
+
+@import "pages/index";
+@import "pages/cards";
+
+//Layout
+@import "layout/header";
+@import "layout/preview";
+@import "layout/form";
+@import "layout/footer";
+
+// Componentes
+@import "components/palette";
