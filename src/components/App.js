@@ -50,6 +50,12 @@ function App() {
 		}
 	};
 
+  // const handleClick = (ev) =>{
+  //   const clickButton = ev.currentTarget;
+
+  //   // if (clickButton === )
+  // }
+
 	return (
 		<div>
 			<main className="cards__main--wrapper">
@@ -81,7 +87,7 @@ function App() {
 										className="preview__links--social js-preview-phone js-border"
 										title={`Phone: ${data.phone}` || "Phone"}
 										target="_self"
-										onClick={handleClick}
+									//	onClick={handleClick}
 									>
 										<i className="fas fa-mobile-alt preview__links--icon js-icons"></i>
 									</a>
@@ -90,7 +96,7 @@ function App() {
 										className="preview__links--social js-preview-email js-border"
 										title={`Email: ${data.email}` || "Email"}
 										target="_self"
-										onClick={handleClick}
+									//	onClick={handleClick}
 									>
 										<i className="far fa-envelope preview__links--icon js-icons"></i>
 									</a>
@@ -99,7 +105,7 @@ function App() {
 										className="preview__links--social js-preview-linkedin js-border"
 										title={`Linkedin: ${data.linkedin}` || "Linkedin"}
 										target="_self"
-										onClick={handleClick}
+									//	onClick={handleClick}
 									>
 										<i className="fab fa-linkedin-in preview__links--icon js-icons"></i>
 									</a>
@@ -108,7 +114,7 @@ function App() {
 										className="preview__links--social js-preview-github js-border"
 										title={`Github: ${data.github}` || "Github"}
 										target="_self"
-										onClick={handleClick}
+									//	onClick={handleClick}
 									>
 										<i className="fab fa-github-alt preview__links--icon js-icons"></i>
 									</a>
