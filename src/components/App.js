@@ -16,7 +16,7 @@ function App() {
     linkedin: "",
     github: "",
     photo: "",
-    palette: 1,
+    palette: "1",
   });
   {
     /* Metemos en una constante el input sobre el que está actuando la usuaria con el ev.currentTarget.name. Llamamos a esa constante para cambiar el valor de la propiedad del objeto data */
@@ -40,7 +40,7 @@ function App() {
       linkedin: "",
       github: "",
       photo: "",
-      palette: 1,
+      palette: "1",
     });
   };
 
@@ -70,7 +70,9 @@ function App() {
                 <i className="far fa-trash-alt preview__reset--icon"></i>
               </button>
               <div className="card__preview--default">
-                <div className="preview__text js-borderleft">
+                <div
+                  className={`preview__text js-borderleft border-text${data.palette}`}
+                >
                   <h3 className="preview__text--name js-preview-name">
                     {data.name || "Nombre Apellido"}
                   </h3>
@@ -83,7 +85,7 @@ function App() {
                   <a
                     href={data.phone || "#"}
                     className="preview__links--social js-preview-phone js-border"
-                    title={`Phone: ${data.phone}` || "Phone"}
+                    title={data.phone ? `Phone: ${data.phone}` : `Phone`}
                     target="_self"
                     //	onClick={handleClick}
                   >
@@ -138,7 +140,7 @@ function App() {
               </legend>
               <div className="form__design--wrapper">
                 <label
-                  htmlFor="chooseColor"
+                  htmlFor="palette"
                   className="form__label form__label--color"
                 >
                   Colores
@@ -148,10 +150,11 @@ function App() {
                     <input
                       className="form__radio js-radio"
                       type="radio"
-                      name="chooseColor"
+                      name="palette"
                       id="chooseColor1"
                       value="1"
-                      defaultChecked
+                      onChange={handleInput}
+                      checked={data.palette === "1"}
                     />
                     <div className="form__radio--color--palette">
                       <div className="form__radio--color colorA1"></div>
@@ -163,9 +166,11 @@ function App() {
                     <input
                       className="form__radio js-radio"
                       type="radio"
-                      name="chooseColor"
+                      name="palette"
                       id="chooseColor2"
+                      onChange={handleInput}
                       value="2"
+                      checked={data.palette === "2"}
                     />
                     <div className="form__radio--color--palette">
                       <div className="form__radio--color colorA2"></div>
@@ -177,8 +182,10 @@ function App() {
                     <input
                       className="form__radio js-radio"
                       type="radio"
-                      name="chooseColor"
+                      name="palette"
                       id="chooseColor3"
+                      onChange={handleInput}
+                      checked={data.palette === "3"}
                       value="3"
                     />
                     <div className="form__radio--color--palette">
