@@ -86,35 +86,31 @@ function App() {
                     href={data.phone || "#"}
                     className={`preview__links--social js-preview-phone  js-border border-icon${data.palette}`}
                     title={data.phone ? `Phone: ${data.phone}` : `Phone`}
-                    target="_self"
-                    //	onClick={handleClick}
+                    target="_blank" rel="noreferrer"
                   >
                     <i className={`fas fa-mobile-alt preview__links--icon js-icons icon${data.palette}`}></i>
                   </a>
                   <a
-                    href={data.email || "#"}
+                    href={data.email ? `mailto:${data.email}` : "#"}
                     className={`preview__links--social js-preview-email js-border border-icon${data.palette}`}
-                    title={`Email: ${data.email}` || "Email"}
-                    target="_self"
-                    //	onClick={handleClick}
+                    title={data.email ? `Email: ${data.email}` : `Email`}
+                    target="_blank" rel="noreferrer"
                   >
                     <i className={`far fa-envelope preview__links--icon js-icons icon${data.palette}`}></i>
                   </a>
                   <a
-                    href={data.linkedin || "#"}
+                    href={data.linkedin ? `https://www.linkedin.com/in/${data.linkedin}` : "#"}
                     className={`preview__links--social js-preview-linkedin js-border border-icon${data.palette}`}
-                    title={`Linkedin: ${data.linkedin}` || "Linkedin"}
-                    target="_self"
-                    //	onClick={handleClick}
+                    title={data.linkedin ? `Linkedin: ${data.linkedin}` : `Linkedin`}
+                    target="_blank" rel="noreferrer"
                   >
                     <i className={`fab fa-linkedin-in preview__links--icon js-icons icon${data.palette}`}></i>
                   </a>
                   <a
-                    href={data.github || "#"}
+                  href={data.github ? `https://github.com/${data.github}` : "#"}
                     className={`preview__links--social js-preview-github js-border border-icon${data.palette}`}
-                    title={`Github: ${data.github}` || "Github"}
-                    target="_self"
-                    //	onClick={handleClick}
+                    title={data.github ? `Github: ${data.github}` : `Github`}
+                    target="_blank" rel="noreferrer"
                   >
                     <i className={`fab fa-github-alt preview__links--icon js-icons icon${data.palette}`}></i>
                   </a>
