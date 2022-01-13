@@ -73,7 +73,7 @@ function App() {
                 <div
                   className={`preview__text js-borderleft border-text${data.palette}`}
                 >
-                  <h3 className="preview__text--name js-preview-name">
+                  <h3 className={`preview__text--name js-preview-name text${data.palette}`}>
                     {data.name || "Nombre Apellido"}
                   </h3>
                   <h4 className="preview__text--role js-preview-job">
@@ -84,39 +84,39 @@ function App() {
                 <div className="preview__links">
                   <a
                     href={data.phone || "#"}
-                    className="preview__links--social js-preview-phone js-border"
+                    className={`preview__links--social js-preview-phone  js-border border-icon${data.palette}`}
                     title={data.phone ? `Phone: ${data.phone}` : `Phone`}
                     target="_self"
                     //	onClick={handleClick}
                   >
-                    <i className="fas fa-mobile-alt preview__links--icon js-icons"></i>
+                    <i className={`fas fa-mobile-alt preview__links--icon js-icons icon${data.palette}`}></i>
                   </a>
                   <a
                     href={data.email || "#"}
-                    className="preview__links--social js-preview-email js-border"
+                    className={`preview__links--social js-preview-email js-border border-icon${data.palette}`}
                     title={`Email: ${data.email}` || "Email"}
                     target="_self"
                     //	onClick={handleClick}
                   >
-                    <i className="far fa-envelope preview__links--icon js-icons"></i>
+                    <i className={`far fa-envelope preview__links--icon js-icons icon${data.palette}`}></i>
                   </a>
                   <a
                     href={data.linkedin || "#"}
-                    className="preview__links--social js-preview-linkedin js-border"
+                    className={`preview__links--social js-preview-linkedin js-border border-icon${data.palette}`}
                     title={`Linkedin: ${data.linkedin}` || "Linkedin"}
                     target="_self"
                     //	onClick={handleClick}
                   >
-                    <i className="fab fa-linkedin-in preview__links--icon js-icons"></i>
+                    <i className={`fab fa-linkedin-in preview__links--icon js-icons icon${data.palette}`}></i>
                   </a>
                   <a
                     href={data.github || "#"}
-                    className="preview__links--social js-preview-github js-border"
+                    className={`preview__links--social js-preview-github js-border border-icon${data.palette}`}
                     title={`Github: ${data.github}` || "Github"}
                     target="_self"
                     //	onClick={handleClick}
                   >
-                    <i className="fab fa-github-alt preview__links--icon js-icons"></i>
+                    <i className={`fab fa-github-alt preview__links--icon js-icons icon${data.palette}`}></i>
                   </a>
                 </div>
               </div>
