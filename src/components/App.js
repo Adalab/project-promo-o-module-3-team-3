@@ -15,7 +15,7 @@ function App() {
           <section className="section__cards">
             <div className="card__preview">
               <button
-                style="cursor: pointer"
+                style={{cursor: "pointer"}}
                 className="preview__reset js-reset"
                 type="reset"
               >
@@ -96,7 +96,7 @@ function App() {
                       id="chooseColor1"
                       value="1"
                       defaultChecked
-                      style="cursor: pointer"
+                      style={{cursor: "pointer"}}
                     />
                     <div className="form__radio--color--palette">
                       <div className="form__radio--color colorA1"></div>
@@ -111,7 +111,7 @@ function App() {
                       name="chooseColor"
                       id="chooseColor2"
                       value="2"
-                      style="cursor: pointer"
+                      style={{cursor: "pointer"}}
                     />
                     <div className="form__radio--color--palette">
                       <div className="form__radio--color colorA2"></div>
@@ -126,7 +126,7 @@ function App() {
                       name="chooseColor"
                       id="chooseColor3"
                       value="3"
-                      style="cursor: pointer"
+                      style={{cursor: "pointer"}}
                     />
                     <div className="form__radio--color--palette">
                       <div className="form__radio--color colorA3"></div>
@@ -142,7 +142,7 @@ function App() {
                 <i className="form__title--icon far fa-keyboard"></i>
                 <h2 className="form__title--text">Rellena</h2>
                 <i
-                  style="cursor: pointer"
+                  style={{cursor: "pointer"}}
                   className="form__title--chevron icon-medium far fa-chevron-down"
                 ></i>
               </legend>
@@ -246,13 +246,13 @@ function App() {
                 <i className="form__title--icon fas fa-share-alt"></i>
                 <h2 className="form__title--text">Comparte</h2>
                 <i
-                  style="cursor:pointer;"
+                  style={{cursor: "pointer"}}
                   className="form__title--chevron icon-medium far fa-chevron-down"
                 ></i>
               </legend>
               <div className="form__share--wrapper">
                 <button
-                  style="cursor:pointer"
+                  style={{cursor: "pointer"}}
                   className="form__submit js-submit"
                   type="submit"
                   disabled
