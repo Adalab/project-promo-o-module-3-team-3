@@ -1,10 +1,57 @@
 import "../styles/App.scss";
 import logo from "../images/dont-be-undefined-logo.svg";
 import logoAdalab from "../images/logo-adalab.png";
+import { useState } from "react";
 
 function App() {
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+  };
+
+  const [data, setData] = useState({
+    name: "",
+    job: "",
+    email: "",
+    phone: "",
+    linkedin: "",
+    github: "",
+    photo: "",
+    palette: "1",
+  });
+  {
+    /* Metemos en una constante el input sobre el que está actuando la usuaria con el ev.currentTarget.name. Llamamos a esa constante para cambiar el valor de la propiedad del objeto data */
+  }
+  const handleInput = (ev) => {
+    const inputChanged = ev.currentTarget.name;
+    setData({
+      ...data,
+      [inputChanged]: ev.currentTarget.value,
+    });
+  };
+  {
+    /* Al hacer click en el reset, llamamos a handleReset que vacía todas las propiedades del objeto */
+  }
+  const handleReset = () => {
+    setData({
+      name: "",
+      job: "",
+      email: "",
+      phone: "",
+      linkedin: "",
+      github: "",
+      photo: "",
+      palette: "1",
+    });
+  };
+
+  // const handleClick = (ev) =>{
+  //   const clickButton = ev.currentTarget;
+
+  //   // if (clickButton === )
+  // }
+
   return (
-    <div id= "root">
+    <div>
       <main className="cards__main--wrapper">
         <header className="header">
           <a href="./index.html">
@@ -15,53 +62,59 @@ function App() {
           <section className="section__cards">
             <div className="card__preview">
               <button
-                style={{cursor: "pointer"}}
                 className="preview__reset js-reset"
                 type="reset"
+                onClick={handleReset}
               >
                 <p className="preview__reset--text">Reset</p>
                 <i className="far fa-trash-alt preview__reset--icon"></i>
               </button>
               <div className="card__preview--default">
-                <div className="preview__text js-borderleft">
+                <div
+                  className={`preview__text js-borderleft border-text${data.palette}`}
+                >
                   <h3 className="preview__text--name js-preview-name">
-                    Nombre Apellido
+                    {data.name || "Nombre Apellido"}
                   </h3>
                   <h4 className="preview__text--role js-preview-job">
-                    Front-End Developer
+                    {data.job || "Front-End Developer"}
                   </h4>
                 </div>
                 <div className="preview__image js__profile-image"></div>
                 <div className="preview__links">
                   <a
-                    href="#"
+                    href={data.phone || "#"}
                     className="preview__links--social js-preview-phone js-border"
-                    title="Phone"
+                    title={data.phone ? `Phone: ${data.phone}` : `Phone`}
                     target="_self"
+                    //	onClick={handleClick}
                   >
                     <i className="fas fa-mobile-alt preview__links--icon js-icons"></i>
                   </a>
                   <a
-                    href="#"
+                    href={data.email || "#"}
                     className="preview__links--social js-preview-email js-border"
-                    title="Email"
+                    title={`Email: ${data.email}` || "Email"}
                     target="_self"
+                    //	onClick={handleClick}
                   >
                     <i className="far fa-envelope preview__links--icon js-icons"></i>
                   </a>
                   <a
-                    href="#"
+                    href={data.linkedin || "#"}
                     className="preview__links--social js-preview-linkedin js-border"
-                    title="Linkedin"
+                    title={`Linkedin: ${data.linkedin}` || "Linkedin"}
                     target="_self"
+                    //	onClick={handleClick}
                   >
                     <i className="fab fa-linkedin-in preview__links--icon js-icons"></i>
                   </a>
                   <a
-                    href="#"
+                    href={data.github || "#"}
                     className="preview__links--social js-preview-github js-border"
-                    title="GitHub"
+                    title={`Github: ${data.github}` || "Github"}
                     target="_self"
+                    //	onClick={handleClick}
                   >
                     <i className="fab fa-github-alt preview__links--icon js-icons"></i>
                   </a>
@@ -69,7 +122,12 @@ function App() {
               </div>
             </div>
           </section>
-          <form action="#" method="get" className="form js-form">
+          <form
+            action="#"
+            method="get"
+            className="form js-form"
+            onSubmit={handleSubmit}
+          >
             <fieldset className="form__design">
               <legend className="form__title js-design__title">
                 <ul>
@@ -82,7 +140,7 @@ function App() {
               </legend>
               <div className="form__design--wrapper">
                 <label
-                  htmlFor="chooseColor"
+                  htmlFor="palette"
                   className="form__label form__label--color"
                 >
                   Colores
@@ -92,11 +150,11 @@ function App() {
                     <input
                       className="form__radio js-radio"
                       type="radio"
-                      name="chooseColor"
+                      name="palette"
                       id="chooseColor1"
                       value="1"
-                      defaultChecked
-                      style={{cursor: "pointer"}}
+                      onChange={handleInput}
+                      checked={data.palette === "1"}
                     />
                     <div className="form__radio--color--palette">
                       <div className="form__radio--color colorA1"></div>
@@ -108,10 +166,11 @@ function App() {
                     <input
                       className="form__radio js-radio"
                       type="radio"
-                      name="chooseColor"
+                      name="palette"
                       id="chooseColor2"
+                      onChange={handleInput}
                       value="2"
-                      style={{cursor: "pointer"}}
+                      checked={data.palette === "2"}
                     />
                     <div className="form__radio--color--palette">
                       <div className="form__radio--color colorA2"></div>
@@ -123,10 +182,11 @@ function App() {
                     <input
                       className="form__radio js-radio"
                       type="radio"
-                      name="chooseColor"
+                      name="palette"
                       id="chooseColor3"
+                      onChange={handleInput}
+                      checked={data.palette === "3"}
                       value="3"
-                      style={{cursor: "pointer"}}
                     />
                     <div className="form__radio--color--palette">
                       <div className="form__radio--color colorA3"></div>
@@ -137,14 +197,12 @@ function App() {
                 </div>
               </div>
             </fieldset>
-            <fieldset className="form__fill collapsed">
+            <fieldset className="form__fill">
+              {/* linea 126 clase collapsed*/}
               <legend className="form__title js-fill__title">
                 <i className="form__title--icon far fa-keyboard"></i>
                 <h2 className="form__title--text">Rellena</h2>
-                <i
-                  style={{cursor: "pointer"}}
-                  className="form__title--chevron icon-medium far fa-chevron-down"
-                ></i>
+                <i className="form__title--chevron icon-medium far fa-chevron-down"></i>
               </legend>
               <div className="form__fill--wrapper">
                 <label htmlFor="fullname" className="form__label">
@@ -159,6 +217,8 @@ function App() {
                   className="form__input js-name js-input"
                   spellCheck="false"
                   required
+                  value={data.name}
+                  onChange={handleInput}
                 />
                 <label htmlFor="job" className="form__label">
                   Puesto<span className="required">*</span>
@@ -172,6 +232,8 @@ function App() {
                   className="form__input js-job js-input"
                   spellCheck="false"
                   required
+                  value={data.job}
+                  onChange={handleInput}
                 />
                 <label htmlFor="profilepicture" className="form__label">
                   Imagen de perfil<span className="required">*</span>
@@ -189,6 +251,7 @@ function App() {
                     name="photo"
                     id="photo"
                     required
+                    onChange={handleInput}
                   />
                   <span className="form__photothumb js__profile-preview"></span>
                 </div>
@@ -203,6 +266,8 @@ function App() {
                   className="form__input js-email js-input"
                   spellCheck="false"
                   required
+                  value={data.email}
+                  onChange={handleInput}
                 />
                 <label htmlFor="phone" className="form__label">
                   Teléfono
@@ -214,6 +279,8 @@ function App() {
                   placeholder="Ej: 555-55-55-55"
                   className="form__input js-phone js-input"
                   spellCheck="false"
+                  value={data.phone}
+                  onChange={handleInput}
                 />
                 <label htmlFor="linkedin" className="form__label">
                   Linkedin<span className="required">*</span>
@@ -226,6 +293,8 @@ function App() {
                   className="form__input js-linkedin js-input"
                   spellCheck="false"
                   required
+                  value={data.linkedin}
+                  onChange={handleInput}
                 />
                 <label htmlFor="github" className="form__label">
                   Github<span className="required">*</span>
@@ -238,21 +307,20 @@ function App() {
                   className="form__input js-github js-input"
                   spellCheck="false"
                   required
+                  value={data.github}
+                  onChange={handleInput}
                 />
               </div>
             </fieldset>
-            <fieldset className="form__share collapsed">
+            <fieldset className="form__share">
+              {/* linea 225 clase collapsed*/}
               <legend className="form__title js-share__title">
                 <i className="form__title--icon fas fa-share-alt"></i>
                 <h2 className="form__title--text">Comparte</h2>
-                <i
-                  style={{cursor: "pointer"}}
-                  className="form__title--chevron icon-medium far fa-chevron-down"
-                ></i>
+                <i className="form__title--chevron icon-medium far fa-chevron-down"></i>
               </legend>
               <div className="form__share--wrapper">
                 <button
-                  style={{cursor: "pointer"}}
                   className="form__submit js-submit"
                   type="submit"
                   disabled
