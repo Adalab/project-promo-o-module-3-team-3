@@ -2,8 +2,8 @@
 //Core
 
 @import "../styles/core/reset";
-@import "../styles/core/variables";
-@import "../styles/core/mixins";
+@import "../styles/core/Variables";
+@import "../styles/core/Mixins";
 
 //Pages
 
@@ -11,10 +11,10 @@
 @import "../styles/pages/cards";
 
 //Layout
-@import "../styles/layout/header";
+// @import "../styles/layout/header";
 @import "../styles/layout/preview";
 @import "../styles/layout/form";
-@import "../styles/layout/footer";
+// @import "../styles/layout/Footer";
 
 // Componentes
 @import "../styles/components/palette";
