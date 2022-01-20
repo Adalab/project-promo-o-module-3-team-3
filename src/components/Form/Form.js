@@ -1,4 +1,5 @@
-import Palette from "./Design/Palette";
+import Palette from "./design/Palette";
+import Input from "./fill/Input";
 
 const Form = (props) => {
   return (
@@ -37,36 +38,79 @@ const Form = (props) => {
           <i className="form__title--chevron icon-medium far fa-chevron-down"></i>
         </legend>
         <div className="form__fill--wrapper">
-          <label htmlFor="fullname" className="form__label">
-            Nombre Completo<span className="required">*</span>
-          </label>
-          <input
-            type="text"
-            id="name"
+          <Input
+           type="text"
+            label="Nombre Completo"
+            htmlFor="fullname"
             name="name"
             placeholder="Ej: Mrs. Chanandler Bong"
             pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}"
-            className="form__input js-name js-input"
-            spellCheck="false"
-            required
-            // value={data.name}
-            // onChange={handleInput}
+            required={true}
+            value={props.data.name}
+            handleInput={props.handleInput}
           />
-          <label htmlFor="job" className="form__label">
-            Puesto<span className="required">*</span>
-          </label>
-          <input
-            type="text"
-            id="job"
+          <Input
+           type="text"
+            label="Puesto"
+            htmlFor="job"
             name="job"
-            placeholder="Ej: Front-end turkey"
+            placeholder="Ej: Front-end turke"
             pattern="[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,48}"
-            className="form__input js-job js-input"
-            spellCheck="false"
-            required
-            // value={data.job}
-            // onChange={handleInput}
+            required={true}
+            value={props.data.job}
+            handleInput={props.handleInput}
           />
+          {/* FALTA METER EL INPUT DE LA FOTO */}
+         
+          <Input
+           type="text"
+            label="Email"
+            htmlFor="email"
+            name="email"
+            placeholder="Ej: sally-hill@gmail.com"
+            pattern=""
+            required={true}
+            value={props.data.email}
+            handleInput={props.handleInput}
+          />
+          ¨
+          <Input
+          type="number"
+            label="Teléfono"
+            htmlFor="phone"
+            name="phone"
+            placeholder="Ej: 555-55-55-55"
+            pattern=""
+            required={false}
+            value={props.data.phone}
+            handleInput={props.handleInput}
+          />
+           <Input
+           type="text"
+            label="Linkedin"
+            htmlFor="linkedin"
+            name="linkedin"
+            placeholder="Ej: linkedin.com/in/sally.hill"
+            pattern=""
+            required={true}
+            value={props.data.linkedin}
+            handleInput={props.handleInput}
+          />
+             <Input
+           type="text"
+            label="Github"
+            htmlFor="github"
+            name="github"
+            placeholder="Ej: @sally-hill"
+            pattern=""
+            required={true}
+            value={props.data.github}
+            handleInput={props.handleInput}
+          />
+          {/*
+       
+       
+          
           <label htmlFor="profilepicture" className="form__label">
             Imagen de perfil<span className="required">*</span>
           </label>
@@ -87,61 +131,12 @@ const Form = (props) => {
             />
             <span className="form__photothumb js__profile-preview"></span>
           </div>
-          <label htmlFor="email" className="form__label">
-            Email<span className="required">*</span>
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Ej: sally-hill@gmail.com"
-            className="form__input js-email js-input"
-            spellCheck="false"
-            required
-            // value={data.email}
-            // onChange={handleInput}
+         
+         
+         
+          
           />
-          <label htmlFor="phone" className="form__label">
-            Teléfono
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder="Ej: 555-55-55-55"
-            className="form__input js-phone js-input"
-            spellCheck="false"
-            // value={data.phone}
-            // onChange={handleInput}
-          />
-          <label htmlFor="linkedin" className="form__label">
-            Linkedin<span className="required">*</span>
-          </label>
-          <input
-            type="text"
-            id="linkedin"
-            name="linkedin"
-            placeholder="Ej: linkedin.com/in/sally.hill"
-            className="form__input js-linkedin js-input"
-            spellCheck="false"
-            required
-            // value={data.linkedin}
-            // onChange={handleInput}
-          />
-          <label htmlFor="github" className="form__label">
-            Github<span className="required">*</span>
-          </label>
-          <input
-            type="text"
-            id="github"
-            name="github"
-            placeholder="Ej: @sally-hill"
-            className="form__input js-github js-input"
-            spellCheck="false"
-            required
-            // value={data.github}
-            // onChange={handleInput}
-          />
+          */}
         </div>
       </fieldset>
       <fieldset className="form__share">

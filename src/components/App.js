@@ -3,7 +3,7 @@ import "../styles/App.scss";
 import { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import Form from "./Form/Form";
+import Form from "./form/Form";
 
 function App() {
   const handleSubmit = (ev) => {
@@ -23,12 +23,13 @@ function App() {
   {
     /* Metemos en una constante el input sobre el que está actuando la usuaria con el ev.currentTarget.name. Llamamos a esa constante para cambiar el valor de la propiedad del objeto data */
   }
-  const handleInput = (ev) => {
-    const inputChanged = ev.currentTarget.name;
+  const handleInput = (name, value) => {
+    const inputChanged = name;
     setData({
       ...data,
-      [inputChanged]: ev.currentTarget.value,
+      [inputChanged]: value,
     });
+    
   };
   {
     /* Al hacer click en el reset, llamamos a handleReset que vacía todas las propiedades del objeto */
@@ -139,7 +140,7 @@ function App() {
               </div>
             </div>
           </section>
-          <Form data={data} />
+          <Form data={data} handleInput={handleInput}/>
         </section>
         <Footer />
       </main>
