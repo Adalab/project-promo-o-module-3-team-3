@@ -1,4 +1,7 @@
 const Palette = (props) => {
+  const handleChangeInput = (ev) => {
+    props.handleInput(ev.currentTarget.name, ev.currentTarget.value);
+  };
   return (
     <div className="form__radio--color--wrapper js-palette">
       <input
@@ -7,8 +10,8 @@ const Palette = (props) => {
         name="palette"
         id={"chooseColor" + props.paletteColor}
         value={props.paletteColor}
-        // onChange={handleInput}
-        checked={props.data.palette === "1"}
+        onChange={handleChangeInput}
+        defaultChecked={props.data.palette === props.paletteColor}
       />
       <div className="form__radio--color--palette">
         <div className={"form__radio--color colorA" + props.paletteColor}></div>

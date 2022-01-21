@@ -24,9 +24,21 @@ const Form = (props) => {
             Colores
           </label>
           <div className="form__input--wrapper">
-            <Palette data={props.data} paletteColor="1" />
-            <Palette data={props.data} paletteColor="2" />
-            <Palette data={props.data} paletteColor="3" />
+            <Palette
+              handleInput={props.handleInput}
+              data={props.data}
+              paletteColor="1"
+            />
+            <Palette
+              handleInput={props.handleInput}
+              data={props.data}
+              paletteColor="2"
+            />
+            <Palette
+              handleInput={props.handleInput}
+              data={props.data}
+              paletteColor="3"
+            />
           </div>
         </div>
       </fieldset>
@@ -39,7 +51,7 @@ const Form = (props) => {
         </legend>
         <div className="form__fill--wrapper">
           <Input
-           type="text"
+            type="text"
             label="Nombre Completo"
             htmlFor="fullname"
             name="name"
@@ -50,7 +62,7 @@ const Form = (props) => {
             handleInput={props.handleInput}
           />
           <Input
-           type="text"
+            type="text"
             label="Puesto"
             htmlFor="job"
             name="job"
@@ -61,9 +73,8 @@ const Form = (props) => {
             handleInput={props.handleInput}
           />
           {/* FALTA METER EL INPUT DE LA FOTO */}
-         
           <Input
-           type="text"
+            type="text"
             label="Email"
             htmlFor="email"
             name="email"
@@ -73,9 +84,9 @@ const Form = (props) => {
             value={props.data.email}
             handleInput={props.handleInput}
           />
-          ¨
+
           <Input
-          type="number"
+            type="tel"
             label="Teléfono"
             htmlFor="phone"
             name="phone"
@@ -85,8 +96,8 @@ const Form = (props) => {
             value={props.data.phone}
             handleInput={props.handleInput}
           />
-           <Input
-           type="text"
+          <Input
+            type="text"
             label="Linkedin"
             htmlFor="linkedin"
             name="linkedin"
@@ -96,8 +107,8 @@ const Form = (props) => {
             value={props.data.linkedin}
             handleInput={props.handleInput}
           />
-             <Input
-           type="text"
+          <Input
+            type="text"
             label="Github"
             htmlFor="github"
             name="github"
