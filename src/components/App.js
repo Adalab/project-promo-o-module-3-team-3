@@ -4,7 +4,7 @@ import { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Form from "./form/Form";
-import Preview from "./Preview";
+import Preview from "./preview/Preview";
 
 function App() {
   const handleSubmit = (ev) => {
