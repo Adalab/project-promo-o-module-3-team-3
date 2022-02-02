@@ -1,4 +1,4 @@
-import ResetButton from "./preview/ResetButton";
+import ResetButton from "./ResetButton";
 
 function Preview(props) {
   return (
