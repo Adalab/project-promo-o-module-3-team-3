@@ -5,21 +5,24 @@ import Profile from "./fill/Profile";
 import Share from "./share/Share";
 
 const Form = (props) => {
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+  };
+
+  const handleCollapsables = (ev) => {
+    console.log(ev.currentTarget.id);
+    props.handleClickCollapsables(ev.currentTarget.id)
+  };
   return (
-    <form
-      action="#"
-      method="get"
-      className="form js-form"
-      //   onSubmit={handleSubmit}
-    >
-      <fieldset className="form__design">
+    <form className="form js-form" onSubmit={handleSubmit}>
+      <fieldset className={`form__design ${props.designOpen ? '' : 'collapsed'}`}>
         <legend className="form__title js-design__title">
           <ul>
-            <i className="form__title--icon icon-light far fa-object-ungroup"></i>
+            <i  className="form__title--icon icon-light far fa-object-ungroup" ></i>
           </ul>
           <h2 className="form__title--text">Diseña</h2>
           <ul>
-            <i className="form__title--chevron icon-medium far fa-chevron-up"></i>
+            <i id="Diseña" className="form__title--chevron icon-medium far fa-chevron-up" onClick={handleCollapsables}></i>
           </ul>
         </legend>
         <div className="form__design--wrapper">
@@ -45,12 +48,12 @@ const Form = (props) => {
           </div>
         </div>
       </fieldset>
-      <fieldset className="form__fill">
+      <fieldset className={`form__fill ${props.fillOpen ? '' : 'collapsed'}`}>
         {/* linea 126 clase collapsed*/}
-        <legend className="form__title js-fill__title">
+        <legend className="form__title js-fill__title" >
           <i className="form__title--icon far fa-keyboard"></i>
           <h2 className="form__title--text">Rellena</h2>
-          <i className="form__title--chevron icon-medium far fa-chevron-down"></i>
+          <i id="Rellena" className="form__title--chevron icon-medium far fa-chevron-down"></i>
         </legend>
         <div className="form__fill--wrapper">
           <Input
@@ -86,7 +89,7 @@ const Form = (props) => {
             htmlFor="email"
             name="email"
             placeholder="Ej: sally-hill@gmail.com"
-            pattern=""
+            // pattern=""
             required={true}
             value={props.data.email}
             handleInput={props.handleInput}
@@ -98,7 +101,7 @@ const Form = (props) => {
             htmlFor="phone"
             name="phone"
             placeholder="Ej: 555-55-55-55"
-            pattern=""
+            // pattern=""
             required={false}
             value={props.data.phone}
             handleInput={props.handleInput}
@@ -109,7 +112,7 @@ const Form = (props) => {
             htmlFor="linkedin"
             name="linkedin"
             placeholder="Ej: linkedin.com/in/sally.hill"
-            pattern=""
+            // pattern=""
             required={true}
             value={props.data.linkedin}
             handleInput={props.handleInput}
@@ -120,14 +123,33 @@ const Form = (props) => {
             htmlFor="github"
             name="github"
             placeholder="Ej: @sally-hill"
-            pattern=""
+            // pattern=""
             required={true}
             value={props.data.github}
             handleInput={props.handleInput}
           />
         </div>
       </fieldset>
-      <Share />
+      <Share
+        data={props.data}
+        shareIsOpen={props.shareIsOpen}
+
+        shareUrl={props.shareUrl}
+        shareSuccess={props.shareSuccess}
+        isDisabled={props.isDisabled}
+        handleClickShareBtn={props.handleClickShareBtn}
+        
+        // handleShare={props.handleShare}
+        // cardData={props.cardData}
+        // cardLink={props.cardLink}
+
+        // apiData={props.apiData}
+        // handleApi={props.handleApi}
+
+        //cardUrl={props.cardUrl}
+        // setCardUrl={props.setCardUrl}
+        // postToApi={props.postToApi}
+      />
     </form>
   );
 };

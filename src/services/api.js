@@ -1,15 +1,30 @@
-const callToApi = () => {
+const postToApi = (userData) => {
   return fetch("https://awesome-profile-cards.herokuapp.com/card", {
     method: "POST",
-    body: JSON.stringify(data),
+    body: JSON.stringify(userData),
+    headers: { "Content-Type": "application/json" },
+  })
+    .then((response) => console.log(response.json()))
+    // .then((apiData) => {
+    //   return apiData;
+      // createLink.innerHTML = `<h3 class="form__card--title">La tarjeta ha sido creada:</h3> <a class="form__card--link" href="${data.cardURL}"target="_blank" title="URL card">${data.cardURL}</a>`;
+      // createButtonTw.innerHTML = `<a class="form__twitter--link" href="https://twitter.com/intent/tweet?text=¡Hola!%20Mira%20mi%20tarjeta%20de%20presentación%20de%20Awesome%20Cards%20&url=${data.cardURL}" target="_blank" title="twitter"><i class="form__twitter--icon fab fa-twitter"></i>Compartir en twitter</a>`;
+   // });
+ // createButton.disabled = true;
+};
+
+export default postToApi;
+
+
+{/*const postToApi = (userData, setURL) => {
+  return fetch("https://awesome-profile-cards.herokuapp.com/card", {
+    method: "POST",
+    body: JSON.stringify(userData),
     headers: { "Content-Type": "application/json" },
   })
     .then((response) => response.json())
     .then((data) => {
-      createLink.innerHTML = `<h3 class="form__card--title">La tarjeta ha sido creada:</h3> <a class="form__card--link" href="${data.cardURL}"target="_blank" title="URL card">${data.cardURL}</a>`;
-      createButtonTw.innerHTML = `<a class="form__twitter--link" href="https://twitter.com/intent/tweet?text=¡Hola!%20Mira%20mi%20tarjeta%20de%20presentación%20de%20Awesome%20Cards%20&url=${data.cardURL}" target="_blank" title="twitter"><i class="form__twitter--icon fab fa-twitter"></i>Compartir en twitter</a>`;
-    });
-  createButton.disabled = true;
-};
-
-export default callToApi;
+      if(data.success){
+        setURL(data.cardURL)
+      }
+    } */}
