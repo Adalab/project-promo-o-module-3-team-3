@@ -16,25 +16,24 @@ function App() {
 
 	// const [avatar, setAvatar] = useState("");
 	const [data, setData] = useState(
-    ls.get("data", {
-		name: "",
-		job: "",
-		email: "",
-		phone: "",
-		linkedin: "",
-		github: "",
-		photo: "",
-		palette: "1",
-	});
+		ls.get("data", {
+			name: "",
+			job: "",
+			email: "",
+			phone: "",
+			linkedin: "",
+			github: "",
+			photo: "",
+			palette: "1",
+		})
+	);
 
-  useEffect(() => {
-    ls.set("data", data);
-  }, [data]);
+	useEffect(() => {
+		ls.set("data", data);
+	}, [data]);
 
+	/* Metemos en una constante el input sobre el que está actuando la usuaria con el ev.currentTarget.name. Llamamos a esa constante para cambiar el valor de la propiedad del objeto data */
 
-	{
-		/* Metemos en una constante el input sobre el que está actuando la usuaria con el ev.currentTarget.name. Llamamos a esa constante para cambiar el valor de la propiedad del objeto data */
-	}
 	const handleInput = (name, value) => {
 		const inputChanged = name;
 		setData({
@@ -42,9 +41,9 @@ function App() {
 			[inputChanged]: value,
 		});
 	};
-	{
-		/* Al hacer click en el reset, llamamos a handleReset que vacía todas las propiedades del objeto */
-	}
+
+	/* Al hacer click en el reset, llamamos a handleReset que vacía todas las propiedades del objeto */
+
 	const handleReset = () => {
 		setData({
 			name: "",
@@ -72,7 +71,6 @@ function App() {
 
 	return (
 		<div>
-      <Switch>
 			<main className="cards__main--wrapper">
 				<Header />
 				<section className="card__wrapper">
@@ -81,7 +79,6 @@ function App() {
 				</section>
 				<Footer />
 			</main>
-      </Switch>
 		</div>
 	);
 }
