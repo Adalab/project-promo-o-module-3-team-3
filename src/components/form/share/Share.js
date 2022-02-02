@@ -1,4 +1,4 @@
-import postToApi from "../../../services/Api";
+import postToApi from '../../../services/Api';
 
 const Share = (props) => {
   const handleClick = (ev) => {
@@ -7,10 +7,10 @@ const Share = (props) => {
   };
 
   const renderLink = () => {
-    if (props.url !== "") {
+    if (props.success && props.url) {
       return (
         <>
-          <h3 className="form__card--title">La tarjeta ha sido creada:</h3>{" "}
+          <h3 className="form__card--title">La tarjeta ha sido creada:</h3>{' '}
           <a
             className="form__card--link"
             href={`${props.url}`}
@@ -30,16 +30,15 @@ const Share = (props) => {
           </a>
         </>
       );
+    } else if (!props.success && props.url === undefined) {
+      return (
+        <p>
+          {' '}
+          `¡Hola! Los campos con <span className="required">* </span>son
+          obligatorios.`;
+        </p>
+      );
     }
-  };
-  const renderError = () => {
-    return (
-      <p>
-        {" "}
-        `¡Hola! Los campos con <span className="required">* </span>son
-        obligatorios.`;
-      </p>
-    );
   };
 
   return (
@@ -60,16 +59,7 @@ const Share = (props) => {
           crear tarjeta
         </button>
 
-        <div>
-          {" "}
-          {!props.success && props.url === ""
-            ? renderError()
-            : renderLink()}{" "}
-        </div>
-
-        {/* <p className="js-text-error text__error"></p>
-        <div className="js-link-card form__card"></div>
-        <div className="js-twitter form__twitter"></div> */}
+        <div> {renderLink()} </div>
       </div>
     </fieldset>
   );

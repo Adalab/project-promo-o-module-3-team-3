@@ -1,13 +1,15 @@
-import "../styles/App.scss";
-
 import { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import postToApi from "../services/Api";
 import ls from "../services/LocalStorage";
+
+import "../styles/App.scss";
+
 import Header from "./Header";
 import Footer from "./Footer";
 import Form from "./form/Form";
 import Preview from "./preview/Preview";
+import Landing from "./Landing";
 
 function App() {
   const handleSubmit = (ev) => {
@@ -78,21 +80,28 @@ function App() {
 
   return (
     <div>
-      <main className="cards__main--wrapper">
-        <Header />
-        <section className="card__wrapper">
-          <Preview data={data} handleReset={handleReset} />
-          <Form
-            updateAvatar={updateAvatar}
-            data={data}
-            handleInput={handleInput}
-            url={url}
-            success={success}
-            changeUrl={changeUrl}
-          />
-        </section>
-        <Footer />
-      </main>
+      <Switch>
+        <Route exact path="/">
+          <Landing />
+        </Route>
+        <Route path="/designCard">
+          <main className="cards__main--wrapper">
+            <Header />
+            <section className="card__wrapper">
+              <Preview data={data} handleReset={handleReset} />
+              <Form
+                updateAvatar={updateAvatar}
+                data={data}
+                handleInput={handleInput}
+                url={url}
+                success={success}
+                changeUrl={changeUrl}
+              />
+            </section>
+            <Footer />
+          </main>
+        </Route>
+      </Switch>
     </div>
   );
 }
