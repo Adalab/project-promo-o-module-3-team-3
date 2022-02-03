@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import Logo from "../images/dont-be-undefined-logo.svg";
-import Footer from "./Footer";
+import { Link } from 'react-router-dom';
+import Logo from '../images/dont-be-undefined-logo.svg';
+import Footer from './Footer';
 //import Header from "./Header";
 
 const Landing = () => {
