@@ -5,24 +5,30 @@ import Profile from "./fill/Profile";
 import Share from "./share/Share";
 
 const Form = (props) => {
-  const handleSubmit = (ev) => {
-    ev.preventDefault();
-  };
-
-  const handleCollapsables = (ev) => {
-    console.log(ev.currentTarget.id);
-    props.handleClickCollapsables(ev.currentTarget.id)
+  const handleClickCollapsables = (ev) => {
+    props.handleCollapsable(ev.currentTarget.id);
   };
   return (
-    <form className="form js-form" onSubmit={handleSubmit}>
-      <fieldset className={`form__design ${props.designOpen ? '' : 'collapsed'}`}>
-        <legend className="form__title js-design__title">
+    <form
+      // action="#"
+      // method="get"
+      className="form js-form"
+      //   onSubmit={handleSubmit}
+    >
+      <fieldset className="form__design">
+        <legend
+          id="collapsableDesign"
+          className="form__title js-design__title"
+          onClick={handleClickCollapsables}
+        >
           <ul>
-            <i  className="form__title--icon icon-light far fa-object-ungroup" ></i>
+            <i className="form__title--icon icon-light far fa-object-ungroup"></i>
           </ul>
           <h2 className="form__title--text">Diseña</h2>
           <ul>
-            <i id="Diseña" className="form__title--chevron icon-medium far fa-chevron-up" onClick={handleCollapsables}></i>
+            <i
+              className={`form__title--chevron icon-medium far fa-chevron-up ${props.arrowDesign}`}
+            ></i>
           </ul>
         </legend>
         <div className="form__design--wrapper">
@@ -31,31 +37,38 @@ const Form = (props) => {
           </label>
           <div className="form__input--wrapper">
             <Palette
-              handleInput={props.handleInput}
               data={props.data}
               paletteColor="1"
+              collapsableDesign={props.collapsableDesign}
+              handleInput={props.handleInput}
             />
             <Palette
-              handleInput={props.handleInput}
               data={props.data}
               paletteColor="2"
+              collapsableDesign={props.collapsableDesign}
+              handleInput={props.handleInput}
             />
             <Palette
-              handleInput={props.handleInput}
               data={props.data}
               paletteColor="3"
+              collapsableDesign={props.collapsableDesign}
+              handleInput={props.handleInput}
             />
           </div>
         </div>
       </fieldset>
-      <fieldset className={`form__fill ${props.fillOpen ? '' : 'collapsed'}`}>
-        {/* linea 126 clase collapsed*/}
-        <legend className="form__title js-fill__title" >
+
+      <fieldset className="form__fill">
+        <legend
+          id="collapsableFill"
+          className="form__title js-fill__title"
+          onClick={handleClickCollapsables}
+        >
           <i className="form__title--icon far fa-keyboard"></i>
           <h2 className="form__title--text">Rellena</h2>
-          <i id="Rellena" className="form__title--chevron icon-medium far fa-chevron-down"></i>
+          <i className="form__title--chevron icon-medium far fa-chevron-down"></i>
         </legend>
-        <div className="form__fill--wrapper">
+        <div className={`form__fill--wrapper ${props.collapsableFill}`}>
           <Input
             type="text"
             label="Nombre Completo"
@@ -94,7 +107,7 @@ const Form = (props) => {
             value={props.data.email}
             handleInput={props.handleInput}
           />
-          ¨
+
           <Input
             type="number"
             label="Teléfono"
@@ -130,25 +143,14 @@ const Form = (props) => {
           />
         </div>
       </fieldset>
+
       <Share
-        data={props.data}
-        shareIsOpen={props.shareIsOpen}
-
+        url={props.url}
+        success={props.success}
         shareUrl={props.shareUrl}
-        shareSuccess={props.shareSuccess}
-        isDisabled={props.isDisabled}
-        handleClickShareBtn={props.handleClickShareBtn}
-        
-        // handleShare={props.handleShare}
-        // cardData={props.cardData}
-        // cardLink={props.cardLink}
-
-        // apiData={props.apiData}
-        // handleApi={props.handleApi}
-
-        //cardUrl={props.cardUrl}
-        // setCardUrl={props.setCardUrl}
-        // postToApi={props.postToApi}
+        collapsableShare={props.collapsableShare}
+        arrowShare={props.arrowShare}
+        handleCollapsable={props.handleCollapsable}
       />
     </form>
   );

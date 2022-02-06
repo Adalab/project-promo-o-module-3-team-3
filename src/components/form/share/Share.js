@@ -1,62 +1,71 @@
-import CreateCardBtn from "./Button";
-import CreateCard from "./CreatedCard";
-
 const Share = (props) => {
-  const renderUrl = () => {
-    if (!props.isDisabled() && props.shareUrl !== "") {
-      return <CreateCard shareUrl={props.shareUrl} />;
-    }
+  const handleClick = (ev) => {
+    ev.preventDefault();
+    props.shareUrl();
   };
-  // const handleClickBtn = (ev) => {
-  //   ev.preventDefault();
-  //   props.handleApi(props.data, props.cardUrl);
-  // };
-  const renderError = () => {
-    if (props.isDisabled()) {
-      return <p>Rellena todos los campos</p>;
-    }
+  const handleClickCollapsables = (ev) => {
+    props.handleCollapsable(ev.currentTarget.id);
   };
-  return (
-    <fieldset className="form__share">
-      {/* linea 225 clase collapsed*/}
-      <legend className="form__title js-share__title">
-        <i className="form__title--icon fas fa-share-alt"></i>
-        <h2 className="form__title--text">Comparte</h2>
-        <i className="form__title--chevron icon-medium far fa-chevron-down"></i>
-      </legend>
-      <div className="form__share--wrapper">
-        {renderUrl()}
-        {renderError()}
 
-
-        <CreateCardBtn
-          data={props.data}
-          isDisabled={props.isDisabled}
-          handleClickShareBtn={props.handleClickShareBtn}
-
-          //handleApi={props.handleApi}
-          // apiData={props.apiData}
-        />
-
-        {/* <p className="js-text-error text__error"></p> */}
-        {/* <div className="js-link-card form__card">
-
-          <CreateCard shareUrl={props.shareUrl} />
-
-         
-        </div> */}
-        {/* <div className="js-twitter form__twitter">
+  const renderLink = () => {
+    if (props.success && props.url) {
+      return (
+        <>
+          <h3 className="form__card--title">La tarjeta ha sido creada:</h3>{" "}
           <a
-            alt="Comparte tu tarjeta en twitter"
-            title="Comparte tu tarjeta en twitter"
-            href={`https://twitter.com/intent/tweet?text=%C2%A1Mirad%20qué%20tarjeta%20tan%20chula%21&url=${props.cardUrl}`}
-            className="share__result--btn js-twitter"
+            className="form__card--link"
+            href={`${props.url}`}
             target="_blank"
+            title="URL card"
             rel="noreferrer"
           >
-            Compartir en twitter
+            {props.url}
           </a>
-        </div> */}
+          <a
+            className="form__twitter--link"
+            href={`https://twitter.com/intent/tweet?text=¡Hola!%20Mira%20mi%20tarjeta%20de%20presentación%20de%20Awesome%20Cards%20&url=${props.url}`}
+            target="_blank"
+            title="twitter"
+            rel="noreferrer"
+          >
+            <i className="form__twitter--icon fab fa-twitter"></i>Compartir en
+            twitter
+          </a>
+        </>
+      );
+    } else if (!props.success && props.url === undefined) {
+      return (
+        <p>
+          {" "}
+          ¡Hola! Los campos con <span className="required">* </span>son
+          obligatorios.
+        </p>
+      );
+    }
+  };
+
+  return (
+    <fieldset className="form__share">
+      <legend
+        id="collapsableShare"
+        className="form__title js-share__title"
+        onClick={handleClickCollapsables}
+      >
+        <i className="form__title--icon fas fa-share-alt"></i>
+        <h2 className="form__title--text">Comparte</h2>
+        <i className={`form__title--chevron icon-medium far fa-chevron-down ${props.arrowShare}`}></i>
+      </legend>
+      <div className={`form__share--wrapper ${props.collapsableShare}`}>
+        <button
+          className="form__submit js-submit"
+          type="submit"
+          onClick={handleClick}
+        >
+          <i className="form__submit--icon far fa-address-card"></i>
+          crear tarjeta
+        </button>
+
+        <div> {renderLink()} </div>
       </div>
     </fieldset>
   );

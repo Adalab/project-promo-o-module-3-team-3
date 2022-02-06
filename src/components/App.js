@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
-import postToApi from "../services/api";
-import ls from "../services/local-storage";
+import postToApi from "../services/Api";
+import ls from "../services/LocalStorage";
 
 import "../styles/App.scss";
 
@@ -12,7 +12,13 @@ import Preview from "./preview/Preview";
 import Landing from "./Landing";
 
 function App() {
-  //               STATES                 //
+  //              STATES               //
+
+  // States for create card
+  const [url, setUrl] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  // States for preview
   const [data, setData] = useState(
     ls.get("data", {
       name: "",
@@ -25,87 +31,29 @@ function App() {
       palette: "1",
     })
   );
-  // state for collapsables
-  // const [collapsables, setCollapsabes] = useState({
-  //   designCollapsable: false,
-  //   fillCollapsable: true,
-  //   shareCollapsable: true,
-  // });
 
-  // state to save data from api
-  const [cardData, setCardData] = useState("");
-  // state for url
-  const [cardLink, setCardLink] = useState("hidden");
-  // const [cardUrl, setCardUrl] = useState("");
+  // States for collapsables:
+  const [collapsableDesign, setCollapsableDesign] = useState("");
+  const [arrowDesign, setArrowDesign] = useState("");
 
-  // share states
-  const [toShare, setToShare] = useState(false);
-  const [shareUrl, setShareUrl] = useState("");
-  const [shareSuccess, setShareSuccess] = useState(false);
+  const [collapsableFill, setCollapsableFill] = useState("collapsed");
+  const [arrowFill, setArrowFill] = useState("");
 
-  // collapsable states
-  const [designIsOpen, setDesignIsOpen] = useState(true);
-  const [fillIsOpen, setFillIsOpen] = useState(false);
-  const [shareIsOpen, setShareIsOpen] = useState(false);
-  //                 EFFECTS                 //
+  const [collapsableShare, setCollapsableShare] = useState("collapsed");
+  const [arrowShare, setArrowShare] = useState("");
+
+  //             FUNCTIONS            //
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+  };
+
   useEffect(() => {
     ls.set("data", data);
   }, [data]);
 
-  //               FUNCTIONS               //
-  // Función para los colapsables
-  const handleClickCollapsables = (fieldset) => {
-    if (fieldset === "Diseña") {
-      setDesignIsOpen(!designIsOpen);
-      setFillIsOpen(false);
-      setShareIsOpen(false);
-    } else if (fieldset === "Rellena") {
-      setFillIsOpen(!fillIsOpen);
-      setDesignIsOpen(false);
-      setShareIsOpen(false);
-    } else if (fieldset === "Comparte") {
-      setShareIsOpen(!shareIsOpen);
-      setDesignIsOpen(false);
-      setFillIsOpen(false);
-    }
-  };
-  // Función api: ejecutamos la función declarada en api.js (postToApi)
-  // recibe dos parámetros -> el primero es para los datos del usuario y el segundo es para el url que se crea
-  {
-    /*const handleApi = (data, cardUrl) => { 
-    postToApi(data, cardUrl).then((response) => {
-      setApiData(response); // modificamos la variable de estado que guarda los datos del api
-    });
-  }; */
-  }
-  {
-    /*
-  const handleShare = (ev) => { 
-    ev.preventDefault();
-    postToApi(data).then((cardData) => {
-      console.log(cardData);
-      setCardData(cardData.cardURL); // modificamos la variable de estado que guarda los datos del api
-    });
-  };*/
-  }
+  // Function to update inputs
+  /* Metemos en una constante el input sobre el que está actuando la usuaria con el ev.currentTarget.name. Llamamos a esa constante para cambiar el valor de la propiedad del objeto data */
 
-  useEffect(() => {
-    if (toShare) {
-      postToApi(data).then((response) => {
-        setShareUrl(response.cardURL);
-        setShareSuccess(response.success);
-        setToShare(false);
-      });
-    }
-  }, [toShare]);
-
-  // const handleSubmit = (ev) => {
-  //   ev.preventDefault();
-  // };
-
-  {
-    /* Metemos en una constante el input sobre el que está actuando la usuaria con el ev.currentTarget.name. Llamamos a esa constante para cambiar el valor de la propiedad del objeto data */
-  }
   const handleInput = (name, value) => {
     const inputChanged = name;
     setData({
@@ -113,9 +61,53 @@ function App() {
       [inputChanged]: value,
     });
   };
-  {
-    /* Al hacer click en el reset, llamamos a handleReset que vacía todas las propiedades del objeto */
-  }
+
+  // Function to update image
+  const updateAvatar = (avatar) => {
+    setData({
+      ...data,
+      photo: avatar,
+    });
+  };
+
+  // Function to share the card
+  const shareUrl = () => {
+    postToApi(data).then((dataFromApi) => {
+      setUrl(dataFromApi.cardURL);
+      setSuccess(dataFromApi.success);
+    });
+  };
+
+  // Function to handle collapsables
+  const handleCollapsable = (id) => {
+    const selected = id;
+    console.log(selected);
+    if (selected === "collapsableDesign") {
+      setCollapsableDesign("");
+      setArrowDesign("rotateArrowUp");
+      setCollapsableFill("collapsed");
+      setArrowFill("");
+      setCollapsableShare("collapsed");
+      setArrowShare("");
+    } else if (selected === "collapsableFill") {
+      setCollapsableDesign("collapsed");
+      setArrowDesign("");
+      setCollapsableFill("");
+      setArrowFill("rotateArrowUp");
+      setCollapsableShare("collapsed");
+      setArrowShare("");
+    } else if (selected === "collapsableShare") {
+      setCollapsableDesign("collapsed");
+      setArrowDesign("");
+      setCollapsableFill("collapsed");
+      setArrowFill("");
+      setCollapsableShare("");
+      setArrowShare("rotateArrowUp");
+    }
+  };
+
+  // Function to reset
+  /* Al hacer click en el reset, llamamos a handleReset que vacía todas las propiedades del objeto */
   const handleReset = () => {
     setData({
       name: "",
@@ -127,30 +119,6 @@ function App() {
       photo: "",
       palette: "1",
     });
-  };
-
-  const updateAvatar = (avatar) => {
-    setData({
-      ...data,
-      photo: avatar,
-    });
-  };
-
-  const handleClickShareBtn = () => {
-    setToShare(true);
-  };
-
-  const isDisabled = () => {
-    if (
-      data.name.length === 0 ||
-      data.job.length === 0 ||
-      data.email.length === 0 ||
-      data.linkedin.length === 0 ||
-      data.github.length === 0 ||
-      data.photo.length === 0
-    ) {
-      return true;
-    }
   };
 
   return (
@@ -166,26 +134,18 @@ function App() {
               <Preview data={data} handleReset={handleReset} />
               <Form
                 data={data}
-                designIsOpen={designIsOpen}
-                fillIsOpen={fillIsOpen}
-                shareIsOpen={shareIsOpen}
-                handleClickCollapsables={handleClickCollapsables}
-
-
-                shareUrl={shareUrl}
-                shareSuccess={shareSuccess}
-                isDisabled={isDisabled}
-                handleInput={handleInput}
+                url={url}
+                success={success}
+                collapsableDesign={collapsableDesign}
+                arrowDesign={arrowDesign}
+                collapsableFill={collapsableFill}
+                arrowFill={arrowFill}
+                collapsableShare={collapsableShare}
+                arrowShare={arrowShare}
                 updateAvatar={updateAvatar}
-                handleClickShareBtn={handleClickShareBtn}
-
-                // cardData={cardData}
-                // cardLink={cardLink}
-                // handleShare={handleShare}
-
-                //cardUrl={cardUrl}
-                // setCardUrl={setCardUrl}
-                // postToApi={postToApi}
+                shareUrl={shareUrl}
+                handleInput={handleInput}
+                handleCollapsable={handleCollapsable}
               />
             </section>
             <Footer />

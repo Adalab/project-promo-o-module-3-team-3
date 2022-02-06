@@ -3,7 +3,7 @@ const Palette = (props) => {
     props.handleInput("palette", props.paletteColor);
   };
   return (
-    <div className="form__radio--color--wrapper js-palette">
+    <div className={`form__radio--color--wrapper js-palette ${props.collapsableDesign}`}>
       <input
         className="form__radio js-radio"
         type="radio"
@@ -11,7 +11,6 @@ const Palette = (props) => {
         id={"chooseColor" + props.paletteColor}
         value={props.paletteColor}
         onChange={handlePalette}
-        //ponemos defaultchecked par que no salga el warning, comprobar si desaparece dejando solo 'checked' al poner la función Onchange.
         checked={props.data.palette === props.paletteColor}
       />
       <div className="form__radio--color--palette">
