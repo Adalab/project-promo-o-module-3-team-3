@@ -3,7 +3,7 @@ const Palette = (props) => {
     props.handleInput("palette", props.paletteColor);
   };
   return (
-    <div className={`form__radio--color--wrapper js-palette ${props.collapsableDesign}`}>
+    <div className="form__radio--color--wrapper js-palette">
       <input
         className="form__radio js-radio"
         type="radio"

@@ -31,7 +31,7 @@ const Form = (props) => {
             ></i>
           </ul>
         </legend>
-        <div className="form__design--wrapper">
+        <div className={`form__design--wrapper ${props.collapsableDesign}`}>
           <label htmlFor="palette" className="form__label form__label--color">
             Colores
           </label>
